@@ -5,6 +5,7 @@
  */
 package mx.neftaly.hackerrank.algorithms;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -17,17 +18,32 @@ public class CircularArrayRotation {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int k = in.nextInt();
-        int q = in.nextInt();
-        int[] a = new int[n];
-        for(int a_i=0; a_i < n; a_i++){
-            a[a_i] = in.nextInt();
-        }
-        for(int a0 = 0; a0 < q; a0++){
-            int m = in.nextInt();
+        try (Scanner in = new Scanner(System.in)) {
+
+            int size = in.nextInt();
+            int rotations = in.nextInt();
+            int queries = in.nextInt();
+
+            int[] rotated = new int[rotations];
+            int[] array = new int[size - rotations];
+
+            for (int j = 0; j < size - rotations; j++) {
+                array[j] = in.nextInt();
+            }
+
+            for (int i = 0; i < rotations; i++) {
+                rotated[i] = in.nextInt();
+            }
+
+            for (int k = 0; k < queries; k++) {
+                int query = in.nextInt();
+                if (query > rotations - 1) {
+                    System.out.println(array[query - rotations]);
+                } else {
+                    System.out.println(rotated[query]);
+                }
+            }
+
         }
     }
-    
 }

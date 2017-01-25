@@ -36,7 +36,7 @@ public class BubbleSort {
             for (int j = 0; j < size - 1; j++) {
                 // Swap adjacent elements if they are in decreasing order
                 if (array[j] > array[j + 1]) {
-                    swap(array[j], array[j + 1]);
+                    //swap(array[j], array[j + 1]);
                     numberOfSwaps++;
                 }
             }
