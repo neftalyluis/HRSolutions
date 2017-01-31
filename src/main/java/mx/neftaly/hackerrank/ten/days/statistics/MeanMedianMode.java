@@ -5,6 +5,7 @@
  */
 package mx.neftaly.hackerrank.ten.days.statistics;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -63,31 +64,27 @@ public class MeanMedianMode {
         //mode
         HashMap<Long, Long> map = new HashMap<>();
 
-        long maxOcurrence = -1;
+        long maxOcurrence = 1;
 
         for (Long number : numbersList) {
             Long value = map.get(number);
             if (value != null) {
                 map.put(number, value + 1);
+                if (value + 1 > maxOcurrence) {
+                    maxOcurrence = value + 1;
+                }
             } else {
                 map.put(number, 1L);
             }
-            if (value + 1 > maxOcurrence) {
-                maxOcurrence = value + 1;
+
+        }
+        List<Long> sameOcurrenceList = new ArrayList<>();
+        for (Map.Entry<Long, Long> entry : map.entrySet()) {
+            if (entry.getValue().equals(maxOcurrence)) {
+                sameOcurrenceList.add(entry.getKey());
             }
         }
 
-        if (maxOcurrence == 1) {
-            System.out.println(numbersList.get(0));
-        } else {
-            for (Map.Entry<Long, Long> entry : map.entrySet()) {
-                if (!entry.getValue().equals(maxOcurrence)) {
-                    map.remove(entry.getKey());
-                }
-            }
-            if (map.size() != 1) {
-                System.out.println(Collections.min(map.keySet()));
-            }
-        }
+        System.out.println(Collections.min(sameOcurrenceList));
     }
 }
